@@ -1,3 +1,4 @@
+// Dependancies
 import React, {Component} from 'react';
 import {
   HashRouter as Router,
@@ -5,21 +6,23 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import {connect} from 'react-redux';
-
+// Components
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import Dashboard from '../Dashboard/Dashboard';
+// Styles
+//import './App.css';
+import './bootstrap.css';
+import './style.css';
 
-import './App.css';
 
 class App extends Component {
+
+  // this figures out which user (or lack of) is logged it, to show them appropriate pages
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
   }
@@ -52,8 +55,8 @@ class App extends Component {
             they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/info"
-              component={InfoPage}
+              path="/dashboard"
+              component={Dashboard}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

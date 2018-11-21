@@ -1,0 +1,161 @@
+.headshot{
+  border-radius: 6em;
+  height: 200px;
+  width: 200px;
+  border: 7.5px solid rgba(82, 113, 255, 1);
+  margin: 30px;
+}
+
+.projectHeader{
+  display: inline-block;
+  margin: 30px;
+  margin-left: 0px;
+}
+
+.thumbnail{
+  height: 200px;
+  width: 350px;
+  border: 7.5px solid white;
+}
+
+.link:hover { 
+  color: white;
+  /* color: rgba(82, 113, 255, 1); */
+}
+
+.adminHeader{
+  background-color: silver;
+  color: black;
+  margin-top: 25px;
+}
+
+input{
+  margin: 10px;
+}
+
+header{
+  background-color: silver;
+  color: black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+body {
+    background-color: #E0E2DB;
+    color: black;
+    margin: 0;
+  }
+  
+  main {
+    margin: auto;
+    width: 80%;
+  }
+  
+  h1 {
+    /* background-color: #C8BBB1; */
+    /* background-color: rgba(76, 84, 84, 1); */
+    color: white;
+    margin: 0;
+    margin-bottom: 1em;
+    /* padding: 0.25em; */
+    /* text-align: center; */
+    text-shadow: 1px 1px 3px #333;
+    width: 100%;
+  }
+  
+  h2, h3, h4, h5, h6 {
+    color: black;
+    /* margin-left: 20px; */
+  }
+  
+  section:nth-of-type(odd) {
+    /* background-color: rgba(76, 84, 84, 1); */
+    background-color: rgba(82, 113, 255, 1);
+  }
+  
+  section:nth-of-type(even) {
+    background-color: rgba(52, 67, 94, 1);
+  }
+  
+  section {
+    border-radius: 0.25em;
+    box-shadow: 3px 4px 5px rgba(76, 84, 84, 1);
+    margin-bottom: 2em;
+    padding: 1.5em;
+    justify-content: space-evenly;
+  }
+  
+  a {
+    color: #937684;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  /* a:visited {
+    color: rgba(82, 113, 255, 1);
+  } */
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /***********   FORMS   ***********/
+  
+  label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    padding: 5px;
+  }
+  
+  input {
+    border-radius: 0.5em;
+    display: inline-block;
+    margin: 5px 5px;
+    padding: 0.5em;
+  }
+  
+  button {
+    background-color: #FFF8F3;
+    border-radius: 0.5em;
+    box-shadow: 1px 2px 3px rgba(76, 84, 84, 1);
+    margin: 5px 5px;
+    padding: 0.5em;
+    font-family: 'bebas neue';
+  }
+  
+  
+  /***********   TABLES   ***********/
+  
+  table {
+    width: 100%;
+    background-color: #F4E4D8;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 0.5em;
+    text-align: left;
+  }
+  
+  
+  tbody tr:nth-of-type(odd) {
+    background-color: rgba(82, 113, 255, 1);
+  }
+  
+  
+  thead tr {
+    /*background-color: #DED0C5;*/
+    background-color: rgba(76, 84, 84, 1);
+    color: white;
+  }
+  
+  
+  /**********   CLASSES   ***********/
+  .center {
+    text-align: center;
+  }
+  
+  .align-input {
+    margin-left: 115px;
+  }
