@@ -15,7 +15,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import Dashboard from '../Dashboard/Dashboard';
 import NewHabit from '../NewHabit/NewHabit';
-import Habits from '../Habits/Habits';
+import HabitsList from '../HabitsList/HabitsList';
 import Analytics from '../Analytics/Analytics';
 // Styles
 //import './App.css';
@@ -69,7 +69,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/habits"
-              component={Habits}
+              component={HabitsList}
             />
             <ProtectedRoute
               exact
