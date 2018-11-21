@@ -1,4 +1,4 @@
-// Dependancies
+// Vendors
 import React, {Component} from 'react';
 import {
   HashRouter as Router,

@@ -1,4 +1,9 @@
+// Vendors
 import React from 'react';
+import { Link } from 'react-router-dom';
+// Styles
+import {Restore, Lock, Trending_up, View_list} from '@material-ui/icons';
+
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -7,7 +12,36 @@ import React from 'react';
 
 const Dashboard = () => (
   <div>
+
     <h1>Your Dashboard</h1>
+
+    <Link to="/">
+        <section className="dashboard">
+            <Lock className="icon"/>
+            <p>Create New Habit</p>
+        </section>
+    </Link>
+
+    <Link to="">
+        <section className="dashboard">
+            {/* <Trending_up className="icon"/> */}
+            <p>Track Your Habits</p>
+        </section>
+    </Link>
+
+    <Link to="">
+        <section className="dashboard">
+            {/* <View_list className="icon"/> */}
+            <p>Your Habits</p>
+        </section>
+    </Link>
+
+    <Link to="">
+        <section className="dashboard">
+            <Restore className="icon"/>
+            <p>Manual Record</p>
+        </section>
+    </Link>
   </div>
 );
 
