@@ -14,6 +14,9 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import Dashboard from '../Dashboard/Dashboard';
+import NewHabit from '../NewHabit/NewHabit';
+import Habits from '../Habits/Habits';
+import Analytics from '../Analytics/Analytics';
 // Styles
 //import './App.css';
 import './bootstrap.css';
@@ -57,6 +60,21 @@ class App extends Component {
               exact
               path="/dashboard"
               component={Dashboard}
+            />
+            <ProtectedRoute
+              exact
+              path="/newhabit"
+              component={NewHabit}
+            />
+            <ProtectedRoute
+              exact
+              path="/habits"
+              component={Habits}
+            />
+            <ProtectedRoute
+              exact
+              path="/analytics"
+              component={Analytics}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

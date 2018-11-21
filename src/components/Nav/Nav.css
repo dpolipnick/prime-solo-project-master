@@ -9,6 +9,7 @@
 .nav {
   overflow: hidden;
   background-color: rgba(82, 113, 255, 1);
+  margin-bottom: 1em;
 }
 
 .nav-link {

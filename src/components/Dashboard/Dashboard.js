@@ -2,8 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // Styles
-import {Restore, Lock, Trending_up, View_list} from '@material-ui/icons';
-
+import {Restore, Lock, TrendingUp, ViewList} from '@material-ui/icons';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -18,20 +17,20 @@ const Dashboard = () => (
     <Link to="/">
         <section className="dashboard">
             <Lock className="icon"/>
-            <p>Create New Habit</p>
+            <p className="dashboard-p">Create New Habit</p>
         </section>
     </Link>
 
     <Link to="">
         <section className="dashboard">
-            {/* <Trending_up className="icon"/> */}
-            <p>Track Your Habits</p>
+            <TrendingUp className="icon"/>
+            <p className="dashboard-p">Track Your Habits</p>
         </section>
     </Link>
 
     <Link to="">
         <section className="dashboard">
-            {/* <View_list className="icon"/> */}
+            <ViewList className="icon"/>
             <p>Your Habits</p>
         </section>
     </Link>

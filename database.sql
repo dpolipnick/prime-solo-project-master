@@ -1,4 +1,6 @@
---CREATE DATA TABLES
+-- First create a database titled 'habit-breaker'
+
+--Create data tables
 CREATE TABLE "users" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -35,5 +37,18 @@ CREATE TABLE "habit_occurences" (
     "date" DATE,
     "time" TIME
 );
+
+-- Create Default Categories
+INSERT INTO "categories" ("user_id", "category") 
+VALUES (null, 'Swear Word');
+
+INSERT INTO "categories" ("user_id", "category") 
+VALUES (null, 'Speech Filler');
+
+INSERT INTO "categories" ("user_id", "category") 
+VALUES (null, 'Political Correctness');
+
+INSERT INTO "categories" ("user_id", "category") 
+VALUES (null, 'Other');
 
 -- SAMPLE DATA
