@@ -6,12 +6,13 @@ const newHabit = {
   user_id: '',
   habit: '',
   mute_status: false,
-  category_id: 1
+  category_id: 'Select...'
 }
 
 class NewHabitForm extends Component {
   state = newHabit;
 
+  // handles the form changes to update state
   handleChange = event => {
     console.log('this.state.category_id:', event.target.value);
     this.setState({
@@ -22,16 +23,21 @@ class NewHabitForm extends Component {
   addNewHabit = event => {
     // this will prevent the page from refreshing
     event.preventDefault();
+    // this will prevent the POST request until the user has chosen a category
+    if (this.state.category_id == 'Select...') {
+        alert('You must select a Category.')
+    }
+    else{
     // this will send a dispatch to redux to add the Habit to our DB
     this.props.dispatch({type: 'ADD_HABIT', payload: this.state});
     // this will clear the input fields
     this.setState(newHabit);
+    }
   }
 
   fetchCategories = () => {
     // Dispatch action to fetch the Categories from the server
     this.props.dispatch( { type: 'FETCH_CATEGORIES' } );
-
   }
 
   // This renders the Categories right away in the drop down menu

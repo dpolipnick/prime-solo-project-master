@@ -1,4 +1,4 @@
-const loginMode = (state = 'login', action) => {
+const loginModeReducer = (state = 'login', action) => {
     switch (action.type) {
       case 'SET_TO_LOGIN_MODE':
         return 'login';
@@ -11,5 +11,5 @@ const loginMode = (state = 'login', action) => {
 
 // loginMode will be on the redux state at:
 // state.loginMode
-  export default loginMode;
+  export default loginModeReducer;
   
