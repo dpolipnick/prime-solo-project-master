@@ -70,8 +70,12 @@ body {
   
   /***********   FORMS   ***********/
   
+  /* form{
+    display: flex;
+  } */
+
   label {
-    display: inline-block;
+    display: initial;
     width: 100px;
     text-align: right;
     padding: 5px;
@@ -121,21 +125,6 @@ body {
   
   
   /**********   CLASSES   ***********/
-  .center {
-    text-align: center;
-  }
-  
-  .align-input {
-    margin-left: 115px;
-  }
-
-  .headshot{
-    border-radius: 6em;
-    height: 200px;
-    width: 200px;
-    border: 7.5px solid rgba(82, 113, 255, 1);
-    margin: 30px;
-  }
   
   .dashboard{
     height: 200px;
@@ -158,26 +147,11 @@ body {
     font-size: large;
   }
   
-  .projectHeader{
-    display: inline-block;
-    margin: 30px;
-    margin-left: 0px;
-  }
-  
-  .thumbnail{
-    height: 200px;
-    width: 350px;
-    border: 7.5px solid white;
-  }
-  
   .link:hover { 
     color: white;
     /* color: rgba(82, 113, 255, 1); */
   }
   
-  .adminHeader{
-    background-color: silver;
-    color: black;
-    margin-top: 25px;
+  .newHabitForm{
+    margin: 1em;
   }
-  

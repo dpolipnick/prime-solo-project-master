@@ -1,5 +1,5 @@
 // Vendors
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Saga that GETs the Categories from the server
@@ -29,8 +29,8 @@ function* addCategorySaga(action) {
   }
 
 function* categoriesSaga() {
-  yield takeLatest('FETCH_CATEGORIES', fetchCategoriesSaga);
-  yield takeLatest('ADD_CATEGORY', addCategorySaga);
+  yield takeEvery('FETCH_CATEGORIES', fetchCategoriesSaga);
+  yield takeEvery('ADD_CATEGORY', addCategorySaga);
 }
 
 export default categoriesSaga;

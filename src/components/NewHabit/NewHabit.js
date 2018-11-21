@@ -3,18 +3,27 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
 const newHabit = {
-  user_id: '',
+  user_id: 0,
   habit: '',
   mute_status: false,
-  category_id: 'Select...'
+  category_id: 0
 }
 
-class NewHabitForm extends Component {
+class NewHabit extends Component {
+
   state = newHabit;
+
+  const 
+
+  establishUser = () =>{
+    this.setState({
+        user_id: this.props.reduxState.user.id
+    })
+  }
 
   // handles the form changes to update state
   handleChange = event => {
-    console.log('this.state.category_id:', event.target.value);
+    console.log(event.target.name,':', event.target.value);
     this.setState({
         [event.target.name]: event.target.value,
     });
@@ -23,8 +32,9 @@ class NewHabitForm extends Component {
   addNewHabit = event => {
     // this will prevent the page from refreshing
     event.preventDefault();
+    console.log('addNewHabit button clicked.');
     // this will prevent the POST request until the user has chosen a category
-    if (this.state.category_id == 'Select...') {
+    if (this.state.category_id === 0) {
         alert('You must select a Category.')
     }
     else{
@@ -42,16 +52,19 @@ class NewHabitForm extends Component {
 
   // This renders the Categories right away in the drop down menu
   componentDidMount() {
-  this.fetchCategories();
+    this.fetchCategories();
+    this.establishUser();
   }
 
-  // changes the mute button from active or muted
-  // status: (true = muted) (false = active)
-  toggleMute = () => {
-    this.setState({
-      ...this.state, mute_status: !this.state.mute_status
-    });
-  }
+    // changes the mute button from active or muted
+    // status: (true = muted) (false = active)
+    toggleMute = (event) => {
+        event.preventDefault();
+        console.log('toggleMute button clicked.');
+        this.setState({
+        ...this.state, mute_status: !this.state.mute_status
+        });
+    }
 
   render() {
 
@@ -59,49 +72,62 @@ class NewHabitForm extends Component {
 
     if (this.state.mute_status === false) {
       muteButton = (
-        <button onClick={this.toggleMute}>
+        <button className="newHabitForm" onClick={this.toggleMute}>
         Active
         </button>
       );
     }
     else {
       muteButton = (
-        <button onClick={this.toggleMute}>
+        <button className="newHabitForm" onClick={this.toggleMute}>
         Muted
         </button>      
         );
     }
 
       return (
-          <section>
+          <div>
               <h3>Create your Habit!</h3>
-              <form onSubmit={this.addNewHabit}>
 
-                <label>Verbal Habit
+              {/* TESTING */}
+              <p>{JSON.stringify(this.state)}</p>
+
+              {/* <form onSubmit={this.addNewHabit}> */}
+                <form>
+
+                <label className="newHabitForm">Verbal Habit</label>
                 <input type='text' id="habit" placeholder="word or phrase" value={this.state.habit} name="habit" onChange={this.handleChange} />
-                </label>
+                
+                <br/>
 
                 {muteButton}
 
+                <br/>
+
                 {/* Drop Down Menu tied in with the categories DB table */}
-                <label>Category:
-                  <select value={this.state.category_id} onChange={this.handleChange} name="category_id">
-                    {this.props.reduxState.categoryReducer.map((category) => {
-                      // console.log('category:', category);
+                <label className="newHabitForm">Category:
+                  <select defaultValue='-- Select Category --' onChange={this.handleChange} name="category_id">
+                    <option key='default' disabled={true}>
+                        -- Select Category --
+                    </option>
+                    {this.props.reduxState.categoriesReducer.map((category) => {
                       return (
-                        <option key={category.id} value={category.id}>{category.name}</option>
+                        <option key={category.id} value={category.id}>{category.category}</option>
                       );
                     })}
                   </select>
                 </label>
 
-                <input type='submit' value='Add New Habit' />
+                <br/>
+                
+                <button onClick={this.addNewHabit}>Add New Habit</button>
+                {/* <input className="newHabitForm" type='submit' value='Add New Habit' /> */}
               </form>
-          </section>
+          </div>
     );
   }
 }
 
-const mapStateToProps = reduxState => ({reduxState,});
+const mapStateToProps = reduxState => ({reduxState});
 
-export default connect(mapStateToProps)(NewHabitForm);
+export default connect(mapStateToProps)(NewHabit);
