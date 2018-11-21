@@ -23,6 +23,15 @@ const Nav = (props) => (
           <Link className="nav-link" to="/dashboard">
             Dashboard
           </Link>
+          <Link className="nav-link" to="/newhabit">
+            Create New Habit
+          </Link>
+          <Link className="nav-link" to="/habits">
+            Your Habits
+          </Link>
+          <Link className="nav-link" to="/analytics">
+            Analytics
+          </Link>
           <LogOutButton className="nav-link"/>
         </>
       )}
