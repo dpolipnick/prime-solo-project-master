@@ -1,34 +1,36 @@
-
+// Vendors 1
 const express = require('express');
 require('dotenv').config();
 
+// Vendors 2
 const app = express();
 const bodyParser = require('body-parser');
 const sessionMiddleware = require('./modules/session-middleware');
-
 const passport = require('./strategies/user.strategy');
 
-// Route includes
+/* ======================= REQUIRE ROUTES ======================= */
 const userRouter = require('./routes/user.router');
+const categoriesRouter = require('./routes/categories.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Passport Session Configuration //
+// Passport Session Configuration
 app.use(sessionMiddleware);
 
-// start up passport sessions
+// Start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
 
-/* Routes */
+/* ======================= ROUTES ======================= */
 app.use('/api/user', userRouter);
+app.use('/api/categories', categoriesRouter);
 
 // Serve static files
 app.use(express.static('build'));
 
-// App Set //
+// App Set
 const PORT = process.env.PORT || 5000;
 
 /** Listen * */
