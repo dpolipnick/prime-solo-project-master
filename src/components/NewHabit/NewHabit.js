@@ -44,6 +44,7 @@ class NewHabit extends Component {
     // this will clear the input fields
     this.setState(newHabit);
     this.establishUser();
+    swal("Great job!", "You've taken the first step towards breaking that habit!", "success");
     }
   }
 
@@ -97,7 +98,7 @@ class NewHabit extends Component {
               {/* <form onSubmit={this.addNewHabit}> */}
                 <form>
 
-                <label className="newHabitForm">Verbal Habit</label>
+                <label className="newHabitForm">Verbal Habit:</label>
                 <input type='text' id="habit" placeholder="word or phrase" value={this.state.habit} name="habit" onChange={this.handleChange} />
                 
                 <br/>

@@ -20,11 +20,10 @@ function* addHabitSaga(action) {
     try {
         yield call( axios.post, '/api/habits', action.payload);
         yield put( { type: 'FETCH_HABITS' } );
-        alert('New habit successfully added!')
+        console.log(`${action.payload.habit} successfully added to the Database.`);
     } 
     catch (error) {
         console.log('Error with habit POST request:', error);
-        alert('New habit unsuccessful... Please try again.')
     }
   }
 
