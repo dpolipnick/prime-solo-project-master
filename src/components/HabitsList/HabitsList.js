@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 // Components
-import HabitsItem from './HabitsItem';
+import HabitsItem from '../HabitsItem/HabitsItem';
 
 class HabitsList extends Component {
 
