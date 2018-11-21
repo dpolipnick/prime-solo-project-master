@@ -92,10 +92,6 @@ class NewHabit extends Component {
           <div>
               <h3>Create your Habit!</h3>
 
-              {/* TESTING */}
-              <p>{JSON.stringify(this.state)}</p>
-
-              {/* <form onSubmit={this.addNewHabit}> */}
                 <form>
 
                 <label className="newHabitForm">Verbal Habit:</label>
@@ -124,7 +120,6 @@ class NewHabit extends Component {
                 <br/>
                 
                 <button onClick={this.addNewHabit}>Add New Habit</button>
-                {/* <input className="newHabitForm" type='submit' value='Add New Habit' /> */}
               </form>
           </div>
     );
