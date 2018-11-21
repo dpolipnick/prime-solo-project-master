@@ -1,5 +1,5 @@
 
-// Used to store the category tags (e.g. 'Swear Word', 'Policical Correctness', 'Speech Filler')
+// Used to store the categories (e.g. 'Swear Word', 'Policical Correctness', 'Speech Filler')
 const categoriesReducer = (state = [], action) => {
   switch (action.type) {
       case 'SET_CATEGORIES':
@@ -9,6 +9,4 @@ const categoriesReducer = (state = [], action) => {
   }
 }
 
-// user will be on the redux state at:
-// state.user
 export default categoriesReducer;

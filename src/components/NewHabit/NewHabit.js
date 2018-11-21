@@ -1,12 +1,13 @@
 // Vendors
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import swal from 'sweetalert';
 
 const newHabit = {
   user_id: 0,
   habit: '',
+  category_id: 0,
   mute_status: false,
-  category_id: 0
 }
 
 class NewHabit extends Component {
@@ -35,13 +36,14 @@ class NewHabit extends Component {
     console.log('addNewHabit button clicked.');
     // this will prevent the POST request until the user has chosen a category
     if (this.state.category_id === 0) {
-        alert('You must select a Category.')
+        swal("WARNING!", "You need to select a category.", "warning");
     }
     else{
     // this will send a dispatch to redux to add the Habit to our DB
     this.props.dispatch({type: 'ADD_HABIT', payload: this.state});
     // this will clear the input fields
     this.setState(newHabit);
+    this.establishUser();
     }
   }
 
