@@ -13,14 +13,7 @@ class HabitsItem extends Component {
         return (
             <div>
                 <h3>{habit.habit}</h3>
-                {this.props.reduxState.categoriesReducer.map((category) => {
-                    if (category.id === habit.category_id) {
-                        return(
-                            <p>Category: {category.category}</p>
-                        );
-                    }
-                })}
-                <p>Category: {habit.tag_id}</p>
+                <p>Category: {habit.category}</p>
                 <Delete />
                 <Create />
             </div>
