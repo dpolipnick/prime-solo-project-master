@@ -25,11 +25,24 @@ function* addHabitSaga(action) {
     catch (error) {
         console.log('Error with habit POST request:', error);
     }
-  }
+}
+
+// Saga that DELETES a habit from the DB via axios del. request
+function* deleteHabitSaga(action){
+    console.log('Deleting this habit:', action.payload);
+    try{
+      yield call(axios.delete, `/api/habits/${action.payload.id}`);
+      yield put({type: 'FETCH_HABITS'});
+    }
+    catch (error){
+      console.log('Error deleting habit:', error);
+    }
+}
 
 function* habitsSaga() {
   yield takeEvery('FETCH_HABITS', fetchHabitsSaga);
   yield takeEvery('ADD_HABIT', addHabitSaga);
+  yield takeEvery('DELETE_HABIT', deleteHabitSaga);
 }
 
 export default habitsSaga;

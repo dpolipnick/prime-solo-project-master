@@ -4,8 +4,8 @@ const router = express.Router();
 
 // This will retrieve the habits from the DB
 router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "habits"
-    JOIN "categories" ON "categories"."id"="habits"."category_id";`;
+    const queryText = `SELECT "habits".*, "categories"."category" FROM "habits"
+    JOIN "categories" ON "habits"."category_id" = "categories"."id";`;
     pool.query(queryText)
       .then((result) => { res.send(result.rows); })
       .catch((error) => {
@@ -32,5 +32,18 @@ router.post('/', (req, res) => {
         res.sendStatus(500);
       });
   });
+
+// This will delete a habit from our DB and send a response
+router.delete('/:id', (req, res) => {
+  console.log('Deleting this habit:', req.params);
+  const queryText = 'DELETE FROM habits WHERE id=$1';
+  pool.query(queryText, [req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error completing DELETE habit query:', error);
+      res.sendStatus(500);
+    });
+});
+
 
 module.exports = router;
