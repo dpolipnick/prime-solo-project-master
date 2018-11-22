@@ -31,26 +31,24 @@ body {
     text-shadow: 1px 1px 3px #333;
     width: 100%;
   }
-  
+/*   
   h2, h3, h4, h5, h6 {
     color: black;
-    /* margin-left: 20px; */
-  }
+  } */
   
-  section:nth-of-type(odd) {
-    /* background-color: rgba(76, 84, 84, 1); */
+  /* section:nth-of-type(odd) {
     background-color: rgba(82, 113, 255, 1);
   }
   
   section:nth-of-type(even) {
     background-color: rgba(52, 67, 94, 1);
-  }
+  } */
   
   section {
     border-radius: 0.25em;
     box-shadow: 3px 4px 5px rgba(76, 84, 84, 1);
     margin-bottom: 2em;
-    padding: 1.5em;
+    padding: .5em;
     justify-content: space-evenly;
   }
   
@@ -154,4 +152,27 @@ body {
   
   .newHabitForm{
     margin: 1em;
+  }
+
+  .habit{
+    background-color: rgba(82, 113, 255, 1);
+    height: 200px;
+    width: 200px;
+    border: 7.5px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    color: white !important;
+  }
+
+  .text-white{
+    color: white;
+  }
+
+  .text-black{
+    color: black;
+  }
+
+  .text-ogs{
+    color: rgba(82, 113, 255, 1);
   }
