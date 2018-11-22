@@ -14,7 +14,9 @@ class HabitsItem extends Component {
             <div>
                 <h3>{habit.habit}</h3>
                 <p className="text-black">Category: {habit.category}</p>
-                <Delete />
+                <Delete onClick={() => {this.props.dispatch(
+                                        {type: 'DELETE_HABIT', payload: habit}
+                                        )}}/>
                 <Create />
             </div>
         );

@@ -33,4 +33,17 @@ router.post('/', (req, res) => {
       });
   });
 
+// This will delete a habit from our DB and send a response
+router.delete('/:id', (req, res) => {
+  console.log('Deleting this habit:', req.params);
+  const queryText = 'DELETE FROM habits WHERE id=$1';
+  pool.query(queryText, [req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error completing DELETE habit query:', error);
+      res.sendStatus(500);
+    });
+});
+
+
 module.exports = router;
