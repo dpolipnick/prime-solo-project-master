@@ -17,6 +17,7 @@ import Dashboard from '../Dashboard/Dashboard';
 import NewHabit from '../NewHabit/NewHabit';
 import HabitsList from '../HabitsList/HabitsList';
 import Analytics from '../Analytics/Analytics';
+import EditHabit from '../EditHabit/EditHabit';
 // Styles
 //import './App.css';
 import './bootstrap.css';
@@ -76,6 +77,12 @@ class App extends Component {
               path="/analytics"
               component={Analytics}
             />
+            <ProtectedRoute
+              exact
+              path="/edithabit"
+              component={EditHabit}
+            />
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
