@@ -14,19 +14,18 @@ class HabitsItem extends Component {
         return (
             <div>
                 <h3>{habit.habit}</h3>
-                <h4>{habit.id}</h4>
                 <p className="text-black">Category: {habit.category}</p>
                 <Delete onClick={() => { 
                     swal({
                         title: "Are you sure?",
-                        text: "Once deleted, you will not be able to recover this habit!",
+                        text: `Once deleted, you will not be able to recover ${habit.habit}!`,
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                        swal("Awesome! You conquered your bad habit and it's been deleted!", {
+                        swal(`Awesome! You conquered ${habit.habit} and it's been deleted!`, {
                             icon: "success",
                         });
                         {this.props.dispatch(
