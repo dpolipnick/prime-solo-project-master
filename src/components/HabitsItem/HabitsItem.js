@@ -7,6 +7,12 @@ import swal from 'sweetalert';
 
 class HabitsItem extends Component {
 
+    // When the edit icon 
+    edithabit = (event) => {
+        event.preventDefault();
+
+    }
+
     render() {
 
         const habit = this.props.habitObject;
@@ -33,7 +39,7 @@ class HabitsItem extends Component {
                         )}}
                     })
                 }}/>
-                <Create />
+                <Create onClick={this.editHabit}/>
             </div>
         );
     }

@@ -3,18 +3,21 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 
-const newHabit = {
+const habit = {
   user_id: 0,
   habit: '',
   category_id: 0,
   mute_status: false,
 }
 
-class NewHabit extends Component {
+class EditHabit extends Component {
 
-  state = newHabit;
-
-  const 
+  state = {
+    user_id: 0,
+    habit: '',
+    category_id: 0,
+    mute_status: false,
+  }
 
   establishUser = () =>{
     this.setState({
@@ -30,10 +33,10 @@ class NewHabit extends Component {
     });
   }
 
-  addNewHabit = event => {
+  editHabit = event => {
     // this will prevent the page from refreshing
     event.preventDefault();
-    console.log('addNewHabit button clicked.');
+    console.log('editHabit button clicked.');
     // this will prevent the POST request until the user has chosen a category
     if (this.state.category_id === 0) {
         swal("WARNING!", "You need to select a category.", "warning");
@@ -42,7 +45,7 @@ class NewHabit extends Component {
     // this will send a dispatch to redux to add the Habit to our DB
     this.props.dispatch({type: 'ADD_HABIT', payload: this.state});
     // this will clear the input fields
-    this.setState(newHabit);
+    this.setState(habit);
     this.establishUser();
     swal("Great job!", "You've taken the first step towards breaking that habit!", "success");
     }
@@ -75,14 +78,14 @@ class NewHabit extends Component {
 
     if (this.state.mute_status === false) {
       muteButton = (
-        <button className="newHabitForm" onClick={this.toggleMute}>
+        <button className="habitForm" onClick={this.toggleMute}>
         Active
         </button>
       );
     }
     else {
       muteButton = (
-        <button className="newHabitForm" onClick={this.toggleMute}>
+        <button className="habitForm" onClick={this.toggleMute}>
         Muted
         </button>      
         );
@@ -94,7 +97,7 @@ class NewHabit extends Component {
 
                 <form>
 
-                <label className="newHabitForm">Verbal Habit:</label>
+                <label className="habitForm">Verbal Habit:</label>
                 <input type='text' id="habit" placeholder="word or phrase" value={this.state.habit} name="habit" onChange={this.handleChange} />
                 
                 <br/>
@@ -104,7 +107,7 @@ class NewHabit extends Component {
                 <br/>
 
                 {/* Drop Down Menu tied in with the categories DB table */}
-                <label className="newHabitForm">Category:
+                <label className="habitForm">Category:
                   <select defaultValue='-- Select Category --' onChange={this.handleChange} name="category_id">
                     <option key='default' disabled={true}>
                         -- Select Category --
@@ -119,7 +122,7 @@ class NewHabit extends Component {
 
                 <br/>
                 
-                <button onClick={this.addNewHabit}>Add New Habit</button>
+                <button onClick={this.editHabit}>Save Changes</button>
               </form>
           </div>
     );
@@ -128,4 +131,4 @@ class NewHabit extends Component {
 
 const mapStateToProps = reduxState => ({reduxState});
 
-export default connect(mapStateToProps)(NewHabit);
+export default connect(mapStateToProps)(EditHabit);
