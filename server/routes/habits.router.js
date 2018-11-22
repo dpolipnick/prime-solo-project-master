@@ -4,8 +4,8 @@ const router = express.Router();
 
 // This will retrieve the habits from the DB
 router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "habits"
-    JOIN "categories" ON "categories"."id"="habits"."category_id";`;
+    const queryText = `SELECT "habits".*, "categories"."category" FROM "habits"
+    JOIN "categories" ON "habits"."category_id" = "categories"."id";`;
     pool.query(queryText)
       .then((result) => { res.send(result.rows); })
       .catch((error) => {
