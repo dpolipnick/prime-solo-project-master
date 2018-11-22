@@ -13,7 +13,7 @@ class HabitsItem extends Component {
         return (
             <div>
                 <h3>{habit.habit}</h3>
-                <p>Category: {habit.category}</p>
+                <p className="text-black">Category: {habit.category}</p>
                 <Delete />
                 <Create />
             </div>
