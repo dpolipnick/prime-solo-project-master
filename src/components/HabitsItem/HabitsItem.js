@@ -1,16 +1,17 @@
 // Vendors
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 // Styles
 import { Delete, Create} from '@material-ui/icons';
 import swal from 'sweetalert';
 
 class HabitsItem extends Component {
 
-    // When the edit icon 
+    // When the edit icon is clicked, navigate to the editHabit page for that habit
     edithabit = (event) => {
         event.preventDefault();
-
+        window.open(`/edithabit/${this.props.habitObject.id}`,`_self`);
     }
 
     render() {
