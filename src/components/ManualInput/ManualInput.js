@@ -54,18 +54,6 @@ class ManualInput extends Component {
           <div>
               <h3>Manually track your recent progress.</h3>
 
-                <form>
-
-                <label className="newHabitForm">Select Date:</label>
-                <input type='date' id="date" placeholder="date" value={this.state.date} name="date" onChange={this.handleChange} />
-                
-                <br/>
-
-                <label className="newHabitForm">Select Time:</label>
-                <input type='time' id="time" placeholder="time" value={this.state.time} name="time" onChange={this.handleChange} />
-                
-                <br/>
-
                 {/* Drop Down Menu tied in with the user's habits via DB table */}
                 <label className="newHabitForm">habit:
                   <select defaultValue='-- Select Habit --' onChange={this.handleChange} name="habit_id">
@@ -81,8 +69,20 @@ class ManualInput extends Component {
                 </label>
 
                 <br/>
+
+                <form>
+
+                <label className="newHabitForm">Select Date:</label>
+                <input type='date' id="date" placeholder="date" value={this.state.date} name="date" onChange={this.handleChange} />
                 
-                <button onClick={this.addNewHabit}>Add New Habit</button>
+                <br/>
+
+                <label className="newHabitForm">Select Time:</label>
+                <input type='time' id="time" placeholder="time" value={this.state.time} name="time" onChange={this.handleChange} />
+                
+                <br/>
+                
+                <button onClick={this.addNewOccurrence}>Add this occurrence to your history.</button>
               </form>
           </div>
     );

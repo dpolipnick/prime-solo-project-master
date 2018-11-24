@@ -28,9 +28,7 @@ class HabitsItem extends Component {
                         swal(`Awesome! You conquered ${habit.habit} and it's been deleted!`, {
                             icon: "success",
                         });
-                        {this.props.dispatch(
-                            {type: 'DELETE_HABIT', payload: habit}
-                        )}}
+                        this.props.dispatch({type: 'DELETE_HABIT', payload: habit})}
                     })
                 }}/>
                 <Create />
