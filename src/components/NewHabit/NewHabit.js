@@ -14,8 +14,6 @@ class NewHabit extends Component {
 
   state = newHabit;
 
-  const 
-
   establishUser = () =>{
     this.setState({
         user_id: this.props.reduxState.user.id
