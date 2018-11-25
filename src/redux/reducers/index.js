@@ -4,6 +4,7 @@ import loginMode from './loginModeReducer';
 import user from './userReducer';
 import categoriesReducer from './categoriesReducer';
 import habitsReducer from './habitsReducer';
+import occurrencesReducer from './occurrencesReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.

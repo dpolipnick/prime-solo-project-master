@@ -23,21 +23,19 @@ class Analytics extends Component {
     });
   }
 
-//   addNewOccurrence = event => {
-//     // this will prevent the page from refreshing
-//     event.preventDefault();
-//     console.log('addNewOccurrence button clicked.');
-//     // this will prevent the POST request until the user has filled the entire form
-//     if (this.state.habit_id === 0 || this.state.date === '' || this.state.time === '') {
-//         swal("WARNING!", "You need to complete each field in the form.", "warning");
-//     }
-//     else{
-//     // this will send a dispatch to redux to add the Occurrence to our DB
-//     this.props.dispatch({type: 'ADD_OCCURRENCE', payload: this.state});
-//     // this will clear the input fields
-//     this.setState(newOccurrence);
-//     }
-//   }
+  fetchOccurrences = event => {
+    // this will prevent the page from refreshing
+    event.preventDefault();
+    console.log('fetchOccurrences button clicked.');
+    // this will prevent the GET request until the user has filled the entire form
+    if (this.state.habit_id === 0 || this.state.startDate === '' || this.state.endDate === '') {
+        swal("WARNING!", "You need to complete each field in the form to see the data.", "warning");
+    }
+    else{
+    // this will send a dispatch to redux to get the occurrences from our DB
+    this.props.dispatch({type: 'FETCH_OCCURRENCES', payload: this.state});
+    }
+  }
 
   fetchHabits = () => {
     // Dispatch action to fetch the Habits from the server
@@ -86,7 +84,7 @@ class Analytics extends Component {
                 
                 <br/>
                 
-                <button onClick={this.addNewOccurrence}>Show history.</button>
+                <button onClick={this.fetchOccurrences}>Show history.</button>
               </form>
 
             <br/>

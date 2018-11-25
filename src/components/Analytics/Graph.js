@@ -37,12 +37,21 @@ class Graph extends Component {
       };
 
     return (
-          <div>
+        <div>
               
-              <h3>Your Data:</h3>
-              <Line data={data} />
+            <h3>Your Data:</h3>
 
-          </div>
+            <p>
+              {this.props.reduxState.occurrencesReducer.map((occurrence) => {
+                return (
+                <p key={occurrence.id} value={occurrence.id}>Habit:{occurrence.habit_id} Date:{occurrence.date} Time:{occurrence.time}</p>
+                );
+                })}
+            </p>
+
+            <Line data={data} />
+
+        </div>
     );
   }
 }

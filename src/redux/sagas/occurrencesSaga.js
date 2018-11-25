@@ -5,9 +5,9 @@ import swal from 'sweetalert';
 
 // Saga that GETs the occurrences from the server/DB
 function* fetchOccurrencesSaga(action) {
-    console.log('In fetchOccurrencesSaga');
+    console.log('In fetchOccurrencesSaga getting this data:', action.payload);
     try {
-        const response = yield call( axios.get, '/api/occurrences' );
+        const response = yield call( axios.get, '/api/occurrences', action.payload);
         yield put( { type: 'SET_OCCURRENCES', payload: response.data } );
     }
     catch (error) {
@@ -20,7 +20,6 @@ function* addOccurrenceSaga(action) {
     console.log('Adding occurrence to the database:', action.payload);
     try {
         yield call( axios.post, '/api/occurrences', action.payload);
-        yield put( { type: 'FETCH_OCCURRENCES' } );
         console.log(`Occurrence successfully added to the Database.`);
         swal("Done!", "Your occurrence of that bad habit has been added to your history.", "success");
     } 
