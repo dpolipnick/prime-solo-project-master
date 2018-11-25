@@ -7,8 +7,8 @@ import Graph from './Graph';
 
 const graph = {
   habit_id: 0,
-  date: '',
-  time: '',
+  startDate: '',
+  endDate: '',
 }
 
 class Analytics extends Component {

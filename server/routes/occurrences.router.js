@@ -4,9 +4,16 @@ const router = express.Router();
 
 // This will retrieve the occurrences from the DB
 router.get('/', (req, res) => {
-    const queryText = `SELECT "habit_occurrences".*, "categories"."category" FROM "habit_occurrences"
-    JOIN "categories" ON "habit_occurrences"."category_id" = "categories"."id";`;
-    pool.query(queryText)
+    const analytics = req.body;
+    const queryText = `SELECT "habit_occurrences".* FROM "habit_occurrences"
+    WHERE (date BETWEEN $1 AND $2)
+    AND habit_id = $3;`;
+    const queryValues = [
+        analytics.startDate,
+        analytics.endDate,
+        analytics.habit_id,
+      ];
+      pool.query(queryText, queryValues)
       .then((result) => { res.send(result.rows); })
       .catch((error) => {
         console.log('Error completing GET occurrences query:', error);
