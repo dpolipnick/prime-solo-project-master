@@ -1,6 +1,6 @@
 -- First create a database titled 'habit-breaker'
 
---Create data tables
+--CREATE DATA TABLES
 CREATE TABLE "users" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -31,14 +31,14 @@ CREATE TABLE "habits" (
     "mute_status" BOOLEAN DEFAULT false
 );
 
-CREATE TABLE "habit_occurences" (
+CREATE TABLE "habit_occurrences" (
     "id" SERIAL PRIMARY KEY,
     "habit_id" INT REFERENCES habits,
     "date" DATE,
     "time" TIME
 );
 
--- Create Default Categories
+-- CREATE DEFAULT CATEGORIES
 INSERT INTO "categories" ("user_id", "category") 
 VALUES (null, 'Swear Word');
 
@@ -51,4 +51,16 @@ VALUES (null, 'Political Correctness');
 INSERT INTO "categories" ("user_id", "category") 
 VALUES (null, 'Other');
 
+-- TESTS
+SELECT habits.id, category.categories FROM "habits"
+JOIN "categories" ON "categories"."id"="habits"."category_id";
+
+SELECT "habits".*, "categories"."category" FROM "habits"
+JOIN "categories" ON "habits"."category_id" = "categories"."id"
+WHERE "habits"."user_id" = 1;
+
+INSERT INTO "habit_occurrences" ("habit_id", "date", "time")
+VALUES (5, '2018-10-24', '05:30');
+
 -- SAMPLE DATA
+
