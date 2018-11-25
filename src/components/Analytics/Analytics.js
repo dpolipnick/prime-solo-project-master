@@ -2,10 +2,10 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import swal from 'sweetalert';
-import Chart from 'chart.js';
-// let myChart = new Chart(ctx, {...});
+// Components
+import Graph from './Graph';
 
-const newOccurrence = {
+const graph = {
   habit_id: 0,
   date: '',
   time: '',
@@ -13,7 +13,7 @@ const newOccurrence = {
 
 class Analytics extends Component {
 
-  state = newOccurrence;
+  state = graph;
 
   // handles the form changes to update state
   handleChange = event => {
@@ -23,21 +23,21 @@ class Analytics extends Component {
     });
   }
 
-  addNewOccurrence = event => {
-    // this will prevent the page from refreshing
-    event.preventDefault();
-    console.log('addNewOccurrence button clicked.');
-    // this will prevent the POST request until the user has filled the entire form
-    if (this.state.habit_id === 0 || this.state.date === '' || this.state.time === '') {
-        swal("WARNING!", "You need to complete each field in the form.", "warning");
-    }
-    else{
-    // this will send a dispatch to redux to add the Occurrence to our DB
-    this.props.dispatch({type: 'ADD_OCCURRENCE', payload: this.state});
-    // this will clear the input fields
-    this.setState(newOccurrence);
-    }
-  }
+//   addNewOccurrence = event => {
+//     // this will prevent the page from refreshing
+//     event.preventDefault();
+//     console.log('addNewOccurrence button clicked.');
+//     // this will prevent the POST request until the user has filled the entire form
+//     if (this.state.habit_id === 0 || this.state.date === '' || this.state.time === '') {
+//         swal("WARNING!", "You need to complete each field in the form.", "warning");
+//     }
+//     else{
+//     // this will send a dispatch to redux to add the Occurrence to our DB
+//     this.props.dispatch({type: 'ADD_OCCURRENCE', payload: this.state});
+//     // this will clear the input fields
+//     this.setState(newOccurrence);
+//     }
+//   }
 
   fetchHabits = () => {
     // Dispatch action to fetch the Habits from the server
@@ -53,10 +53,13 @@ class Analytics extends Component {
 
     return (
           <div>
-              <h3>Manually track your recent progress.</h3>
+              
+              <h3>View your progress!</h3>
+
+                <form>
 
                 {/* Drop Down Menu tied in with the user's habits via DB table */}
-                <label className="newHabitForm">habit:
+                <label className="newHabitForm">Habit:
                   <select defaultValue='-- Select Habit --' onChange={this.handleChange} name="habit_id">
                     <option key='default' disabled={true}>
                         -- Select Habit --
@@ -71,20 +74,25 @@ class Analytics extends Component {
 
                 <br/>
 
-                <form>
-
-                <label className="newHabitForm">Select Date:</label>
-                <input type='date' id="date" placeholder="date" value={this.state.date} name="date" onChange={this.handleChange} />
+                <label className="newHabitForm">Select Start Date:</label>
+                <input type='date' id="startDate" placeholder="date" value={this.state.startDate} name="startDate" onChange={this.handleChange} />
                 
                 <br/>
+                <label className="newHabitForm">through</label>
+                <br/>
 
-                <label className="newHabitForm">Select Time:</label>
-                <input type='time' id="time" placeholder="time" value={this.state.time} name="time" onChange={this.handleChange} />
+                <label className="newHabitForm">Select End Date:</label>
+                <input type='date' id="endDate" placeholder="date" value={this.state.endDate} name="endDate" onChange={this.handleChange} />
                 
                 <br/>
                 
-                <button onClick={this.addNewOccurrence}>Add this occurrence to your history.</button>
+                <button onClick={this.addNewOccurrence}>Show history.</button>
               </form>
+
+            <br/>
+
+            <Graph />
+
           </div>
     );
   }

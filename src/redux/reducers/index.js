@@ -17,6 +17,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   categoriesReducer, // fetches and stores the categories
   habitsReducer, // stores and fetches the habits
+  occurrencesReducer, // stores the user's occurrences for analytics and graph use
 });
 
 export default rootReducer;

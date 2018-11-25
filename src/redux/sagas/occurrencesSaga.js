@@ -20,7 +20,7 @@ function* addOccurrenceSaga(action) {
     console.log('Adding occurrence to the database:', action.payload);
     try {
         yield call( axios.post, '/api/occurrences', action.payload);
-        // yield put( { type: 'FETCH_OCCURRENCES' } );
+        yield put( { type: 'FETCH_OCCURRENCES' } );
         console.log(`Occurrence successfully added to the Database.`);
         swal("Done!", "Your occurrence of that bad habit has been added to your history.", "success");
     } 

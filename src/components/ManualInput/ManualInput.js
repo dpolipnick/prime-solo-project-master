@@ -53,6 +53,8 @@ class ManualInput extends Component {
           <div>
               <h3>Manually track your recent progress.</h3>
 
+              <form>
+
                 {/* Drop Down Menu tied in with the user's habits via DB table */}
                 <label className="newHabitForm">habit:
                   <select defaultValue='-- Select Habit --' onChange={this.handleChange} name="habit_id">
@@ -68,8 +70,6 @@ class ManualInput extends Component {
                 </label>
 
                 <br/>
-
-                <form>
 
                 <label className="newHabitForm">Select Date:</label>
                 <input type='date' id="date" placeholder="date" value={this.state.date} name="date" onChange={this.handleChange} />
