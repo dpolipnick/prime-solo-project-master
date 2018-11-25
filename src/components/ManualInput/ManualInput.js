@@ -34,7 +34,6 @@ class ManualInput extends Component {
     this.props.dispatch({type: 'ADD_OCCURRENCE', payload: this.state});
     // this will clear the input fields
     this.setState(newOccurrence);
-    swal("Done!", "Your occurrence of that bad habit has been added to your history.", "success");
     }
   }
 

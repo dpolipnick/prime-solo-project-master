@@ -1,6 +1,7 @@
 // Vendors
 import { put, takeEvery, call } from 'redux-saga/effects';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 // Saga that GETs the occurrences from the server/DB
 function* fetchOccurrencesSaga(action) {
@@ -19,8 +20,9 @@ function* addOccurrenceSaga(action) {
     console.log('Adding occurrence to the database:', action.payload);
     try {
         yield call( axios.post, '/api/occurrences', action.payload);
-        yield put( { type: 'FETCH_OCCURRENCES' } );
-        console.log(`Occurrence: ${action.payload} successfully added to the Database.`);
+        // yield put( { type: 'FETCH_OCCURRENCES' } );
+        console.log(`Occurrence successfully added to the Database.`);
+        swal("Done!", "Your occurrence of that bad habit has been added to your history.", "success");
     } 
     catch (error) {
         console.log('Error with occurrence POST request:', error);
@@ -39,7 +41,7 @@ function* deleteOccurrenceSaga(action){
     }
 }
 
-function* OccurrencesSaga() {
+function* occurrencesSaga() {
   yield takeEvery('FETCH_OCCURRENCES', fetchOccurrencesSaga);
   yield takeEvery('ADD_OCCURRENCE', addOccurrenceSaga);
   yield takeEvery('DELETE_OCCURRENCE', deleteOccurrenceSaga);
