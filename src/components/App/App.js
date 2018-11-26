@@ -19,6 +19,7 @@ import HabitsList from '../HabitsList/HabitsList';
 import Analytics from '../Analytics/Analytics';
 import EditHabit from '../EditHabit/EditHabit';
 import ManualInput from '../ManualInput/ManualInput';
+import CustomSearch from '../CustomSearch/CustomSearch';
 // Styles
 //import './App.css';
 import './bootstrap.css';
@@ -80,6 +81,11 @@ class App extends Component {
               exact
               path="/analytics"
               component={Analytics}
+            />
+            <ProtectedRoute
+              exact
+              path="/search"
+              component={CustomSearch}
             />
             <ProtectedRoute
               exact

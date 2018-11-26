@@ -6,7 +6,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
     const analytics = req.query;
     console.log('occurrences GET request req.query:', analytics);
-    const queryText = `SELECT "habit_occurrences".* FROM "habit_occurrences"
+    const queryText = `SELECT "habit_occurrences".*, "habits"."habit" FROM "habit_occurrences"
+    JOIN "habits" ON "habit_occurrences"."habit_id" = "habits"."id"
     WHERE (date BETWEEN $1 AND $2)
     AND habit_id = $3;`;
     const queryValues = [

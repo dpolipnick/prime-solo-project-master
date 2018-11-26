@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 // Components
-import Graph from './Graph';
-import Table from '../CustomSearch/Table';
+import Table from './Table';
 
 const graph = {
   habit_id: 0,
@@ -12,7 +11,7 @@ const graph = {
   endDate: '',
 }
 
-class Analytics extends Component {
+class CustomSearch extends Component {
 
   state = graph;
 
@@ -54,8 +53,6 @@ class Analytics extends Component {
           <div>
               
               <h3>View your progress!</h3>
-
-              <button onClick>Custom Search</button>
 
                 <form>
 
@@ -101,4 +98,4 @@ class Analytics extends Component {
 
 const mapStateToProps = reduxState => ({reduxState});
 
-export default connect(mapStateToProps)(Analytics);
+export default connect(mapStateToProps)(CustomSearch);
