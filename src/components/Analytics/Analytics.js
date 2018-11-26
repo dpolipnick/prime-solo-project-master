@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import swal from 'sweetalert';
 // Components
 import Graph from './Graph';
-import Table from '../CustomSearch/Table';
 
 const graph = {
   habit_id: 0,
@@ -55,7 +54,7 @@ class Analytics extends Component {
               
               <h3>View your progress!</h3>
 
-              <button onClick>Custom Search</button>
+              <button onClick={()=> window.open("/search", "_self")}>Custom Search</button>
 
                 <form>
 
@@ -92,7 +91,7 @@ class Analytics extends Component {
 
             <br/>
 
-            <Table />
+            {/* <Graph /> */}
 
           </div>
     );
