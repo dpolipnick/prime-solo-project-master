@@ -7,11 +7,12 @@ import swal from 'sweetalert';
 function* fetchOccurrencesSaga(action) {
     console.log('In fetchOccurrencesSaga getting this data:', action.payload);
     try {
-        const response = yield call( axios.get, '/api/occurrences', action.payload);
+        // const response = yield call( axios.get, '/api/occurrences', action.payload);
+        const response = yield axios.get('/api/occurrences', action.payload);
         yield put( { type: 'SET_OCCURRENCES', payload: response.data } );
     }
     catch (error) {
-        console.log('error with Occurrences DB GET request', error);
+        console.log('error with occurrences DB GET request', error);
     }
 }
 
