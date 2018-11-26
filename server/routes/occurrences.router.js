@@ -4,8 +4,8 @@ const router = express.Router();
 
 // This will retrieve the occurrences from the DB
 router.get('/', (req, res) => {
-    const analytics = req.body;
-    console.log('occurrences GET request req.body:', analytics);
+    const analytics = req.query;
+    console.log('occurrences GET request req.query:', analytics);
     const queryText = `SELECT "habit_occurrences".* FROM "habit_occurrences"
     WHERE (date BETWEEN $1 AND $2)
     AND habit_id = $3;`;
@@ -16,8 +16,9 @@ router.get('/', (req, res) => {
       ];
       console.log('On server about to do occurrence GET queryText:', queryText, 'queryValues:', queryValues);
       pool.query(queryText, queryValues)
-      .then((result) => { res.send(result.rows); })
-      console.log('GET request for occurrences was successful! Your results:', result.rows)
+      .then((result) => { res.send(result.rows);
+      console.log('GET request for occurrences was successful! Your results:', result.rows);
+      })
       .catch((error) => {
         console.log('Error completing GET occurrences query:', error);
         res.sendStatus(500);
