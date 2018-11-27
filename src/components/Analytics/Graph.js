@@ -7,32 +7,48 @@ class Graph extends Component {
 
   state = {
     today: [],
-    week: []
+    week: [],
+    month: [],
+    notToday: []
   }
 
-  // occurrences = this.props.reduxState.occurrencesReducer;
-  now = Date.now();
+  // occurrences = this.props.reduxState.historyReducer;
+  // now = Date.now();
 
 
   history = (timePeriod) => {
-    now = Date.now();
+    let now = Date.now();
     this.props.reduxState.historyReducer.map((occurrence) => {
       // if the occurrence was within the last 24 hours, add to todayArray
       if (Date.parse(occurrence.date) > now-86400000) {
-      this.state.today.push(occurrence);
+        this.state.today.push(occurrence);
       }
-  
+      // week
+      if (Date.parse(occurrence.date) > now-604800000) {
+        this.state.week.push(occurrence);
+      }
+      // month
+      if (Date.parse(occurrence.date) > now-2592000000) {
+        this.state.month.push(occurrence);
+      }
+      else {
+        this.state.notToday.push(occurrence);
+      }
     })
   }
 
-  searchHistory = (string) => {
-    console.log(`Searching through ${string} searchHistory.`)
-    switch(string){
-      case 'day':
-        let dayArray = [];
-        let dayArrayN = this.occurrences.filter(item => Date.parse(item.date) > this.now-86400000);
-        console.log('dayArrayN:', dayArrayN);
-        return [dayArrayN];
+  componentDidMount = () => {
+    this.history();
+  }
+
+  // searchHistory = (string) => {
+  //   console.log(`Searching through ${string} searchHistory.`)
+  //   switch(string){
+  //     case 'day':
+  //       let dayArray = [];
+  //       let dayArrayN = this.occurrences.filter(item => Date.parse(item.date) > this.now-86400000);
+  //       console.log('dayArrayN:', dayArrayN);
+  //       return [dayArrayN];
       // case 'week':
       //   let weekArray = occurrences.filter(item => Date.parse(item.date) > now-604800000)
       //   let weekCorrect = weekArray.filter(item => item.correct == 1)
@@ -47,8 +63,8 @@ class Graph extends Component {
       //   let totalCorrect = occurrences.filter(item => item.correct ==1)  
       //   let totalIncorrect = occurrences.filter(item => item.incorrect ==1) 
       //   return [totalCorrect.length, totalIncorrect.length]
-    }
-  }
+  //   }
+  // }
 
   // today = {
   //   labels: January, Feruary, March, April, May, June, July, August, September, October, November, December,
@@ -87,6 +103,7 @@ class Graph extends Component {
         <div>
               
             <h2>Your Data:</h2>
+            <button onClick={this.history}>Show History</button>
 
               {this.occurrences.map((occurrence) => {
                 return (
@@ -95,7 +112,19 @@ class Graph extends Component {
                 })}
 
             <h3>Today</h3>
-            <p>12AM: {this.sample}</p>
+            <p>Total: {this.state.today.length}</p>
+
+            <h3>This Week</h3>
+            <p>Total: {this.state.week.length}</p>
+
+            <h3>This Month</h3>
+            <p>Total: {this.state.month.length}</p>
+
+            <h3>All Time</h3>
+            <p>Total: {this.props.reduxState.historyReducer.length}</p>
+
+            <h3>Not Today</h3>
+            <p>Total: {this.state.notToday}</p>
 
             {/* <Line data={this.today} /> */}
 

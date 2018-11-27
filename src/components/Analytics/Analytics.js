@@ -32,6 +32,7 @@ class Analytics extends Component {
     else{
     // this will send a dispatch to redux to get the occurrences from our DB
     this.props.dispatch({type: 'FETCH_HISTORY', payload: this.state});
+    // this.loadGraph();
     }
   }
 
@@ -44,6 +45,12 @@ class Analytics extends Component {
   componentDidMount() {
     this.fetchHabits();
   }
+
+  // loadGraph = () => {
+  //   return(
+  //     <Graph />
+  //   );
+  // }
 
   render() {
 
@@ -78,6 +85,7 @@ class Analytics extends Component {
 
             <br/>
 
+            {/* {this.loadGraph} */}
             <Graph />
 
           </div>
