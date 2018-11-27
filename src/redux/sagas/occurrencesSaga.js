@@ -20,7 +20,7 @@ function* fetchOccurrencesSaga(action) {
 function* fetchHistorySaga(action) {
     console.log(`In fetchHistorySaga getting this habit's data:`, action.payload);
     try {
-        const response = yield axios.get('/api/occurrences/history', {params: action.payload});
+        const response = yield axios.get('/api/occurrences/history', {params:{id:action.payload}});
         yield put( { type: 'SET_HISTORY', payload: response.data } );
     }
     catch (error) {

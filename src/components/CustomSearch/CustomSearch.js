@@ -54,7 +54,7 @@ class CustomSearch extends Component {
               
               <h3>Customize your search</h3>
 
-              <button onClick={()=> window.open("/#/analytics", "_self")}>Back to Analytics</button>
+              <button className="analyticsButton" onClick={()=> window.open("/#/analytics", "_self")}>Back to Analytics</button>
 
                 <form>
 

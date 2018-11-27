@@ -34,7 +34,7 @@ router.get('/history', (req, res) => {
   JOIN "habits" ON "habit_occurrences"."habit_id" = "habits"."id"
   WHERE habit_id = $1;`;
   const queryValues = [
-      analytics.habit_id,
+      analytics.id,
     ];
     console.log('On server about to do occurrence GET queryText:', queryText, 'queryValues:', queryValues);
     pool.query(queryText, queryValues)
