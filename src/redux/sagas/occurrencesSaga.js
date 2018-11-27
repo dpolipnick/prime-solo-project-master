@@ -5,13 +5,26 @@ import swal from 'sweetalert';
 
 // Saga that GETs the occurrences from the server/DB
 function* fetchOccurrencesSaga(action) {
-    console.log('In fetchOccurrencesSaga');
+    console.log('In fetchOccurrencesSaga getting this data:', action.payload);
     try {
-        const response = yield call( axios.get, '/api/occurrences' );
+        // const response = yield call( axios.get, '/api/occurrences', action.payload);
+        const response = yield axios.get('/api/occurrences', {params: action.payload});
         yield put( { type: 'SET_OCCURRENCES', payload: response.data } );
     }
     catch (error) {
-        console.log('error with Occurrences DB GET request', error);
+        console.log('error with occurrences DB GET request', error);
+    }
+}
+
+// Saga that GETs the occurrence history from the server/DB
+function* fetchHistorySaga(action) {
+    console.log(`In fetchHistorySaga getting this habit's data:`, action.payload);
+    try {
+        const response = yield axios.get('/api/occurrences/history', {params:{id:action.payload}});
+        yield put( { type: 'SET_HISTORY', payload: response.data } );
+    }
+    catch (error) {
+        console.log('error with occurrence history DB GET request', error);
     }
 }
 
@@ -20,7 +33,6 @@ function* addOccurrenceSaga(action) {
     console.log('Adding occurrence to the database:', action.payload);
     try {
         yield call( axios.post, '/api/occurrences', action.payload);
-        // yield put( { type: 'FETCH_OCCURRENCES' } );
         console.log(`Occurrence successfully added to the Database.`);
         swal("Done!", "Your occurrence of that bad habit has been added to your history.", "success");
     } 
@@ -45,6 +57,7 @@ function* occurrencesSaga() {
   yield takeEvery('FETCH_OCCURRENCES', fetchOccurrencesSaga);
   yield takeEvery('ADD_OCCURRENCE', addOccurrenceSaga);
   yield takeEvery('DELETE_OCCURRENCE', deleteOccurrenceSaga);
+  yield takeEvery('FETCH_HISTORY', fetchHistorySaga);
 }
 
 export default occurrencesSaga;

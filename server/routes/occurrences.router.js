@@ -4,15 +4,48 @@ const router = express.Router();
 
 // This will retrieve the occurrences from the DB
 router.get('/', (req, res) => {
-    const queryText = `SELECT "habit_occurrences".*, "categories"."category" FROM "habit_occurrences"
-    JOIN "categories" ON "habit_occurrences"."category_id" = "categories"."id";`;
-    pool.query(queryText)
-      .then((result) => { res.send(result.rows); })
-      .catch((error) => {
-        console.log('Error completing GET occurrences query:', error);
-        res.sendStatus(500);
-      });
-  });
+    const analytics = req.query;
+    console.log('occurrences GET request req.query:', analytics);
+    const queryText = `SELECT "habit_occurrences".*, "habits"."habit" FROM "habit_occurrences"
+    JOIN "habits" ON "habit_occurrences"."habit_id" = "habits"."id"
+    WHERE (date BETWEEN $1 AND $2)
+    AND habit_id = $3;`;
+    const queryValues = [
+        analytics.startDate,
+        analytics.endDate,
+        analytics.habit_id,
+    ];
+    console.log('On server about to do occurrence GET queryText:', queryText, 'queryValues:', queryValues);
+    pool.query(queryText, queryValues)
+    .then((result) => { res.send(result.rows);
+    console.log('GET request for occurrences was successful! Your results:', result.rows);
+    })
+    .catch((error) => {
+      console.log('Error completing GET occurrences query:', error);
+      res.sendStatus(500);
+    });
+});
+
+ // This will retrieve the occurrence HISTORY from the DB
+router.get('/history', (req, res) => {
+  const analytics = req.query;
+  console.log('History GET request req.query:', analytics);
+  const queryText = `SELECT "habit_occurrences".*, "habits"."habit" FROM "habit_occurrences"
+  JOIN "habits" ON "habit_occurrences"."habit_id" = "habits"."id"
+  WHERE habit_id = $1;`;
+  const queryValues = [
+      analytics.id,
+    ];
+    console.log('On server about to do occurrence GET queryText:', queryText, 'queryValues:', queryValues);
+    pool.query(queryText, queryValues)
+    .then((result) => { res.send(result.rows);
+    console.log('GET request for occurrence history was successful! Your results:', result.rows);
+    })
+    .catch((error) => {
+      console.log(`Error completing GET occurrence's history query:`, error);
+      res.sendStatus(500);
+    });
+});
 
 // This will POST a new occurrence on our DB and respond to client
 router.post('/', (req, res) => {

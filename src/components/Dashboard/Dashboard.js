@@ -10,35 +10,41 @@ import {Restore, Lock, TrendingUp, ViewList} from '@material-ui/icons';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 const Dashboard = () => (
-  <div>
+  <div className="CenterPage">
 
     <h1>Your Dashboard</h1>
 
-    <Link to="/">
+    <Link to="/newhabit">
         <section className="dashboard">
             <Lock className="icon"/>
-            <p className="dashboard-p">Create New Habit</p>
+            <br/>
+            <span className="dashboard-p">Create New Habit</span>
         </section>
     </Link>
 
-    <Link to="">
+    <Link to="/analytics">
         <section className="dashboard">
             <TrendingUp className="icon"/>
-            <p className="dashboard-p">Track Your Habits</p>
+            <br/>
+            <span className="dashboard-p">Track Your Habits</span>
         </section>
     </Link>
 
-    <Link to="">
+    <Link to="/habits">
         <section className="dashboard">
             <ViewList className="icon"/>
-            <p>Your Habits</p>
+            <br/>
+            <span className="dashboard-p">Your Bad Habits</span>
         </section>
     </Link>
 
-    <Link to="">
+    <Link to="/manual-input">
         <section className="dashboard">
             <Restore className="icon"/>
-            <p>Manual Record</p>
+            <br/>
+            <span className="dashboard-p">Manual Input</span>
+            <br/>
+            <br/>
         </section>
     </Link>
   </div>

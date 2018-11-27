@@ -7,7 +7,7 @@ import './Footer.css'
 class Footer extends Component {
   render() {
     return (
-    <footer>
+    <footer className="Myfooter">
         <nav>
             <p className="link" onClick={()=> window.open("http://onlinegrowthsystems.com/blog", "_blank")}>An Online Growth Systems Project</p>
             <p className="link" onClick={()=> window.open("https://github.com/dpolipnick/prime-solo-project-master", "_blank")}>Source Code</p>

@@ -129,10 +129,12 @@ body {
     width: 200px;
     border: 7.5px solid black;
     color: white;
-    display: flex;
+    margin: 8px;
+    display: inline-block;
     flex-wrap: wrap;
     text-align: center;
     font-size: 1.2em;
+    background-color: rgba(82, 113, 255, 1);
   }
 
   .dashboard-p{
@@ -159,7 +161,8 @@ body {
     height: 200px;
     width: 200px;
     border: 7.5px solid black;
-    display: flex;
+    display: inline-block;
+    margin: 10px;
     flex-wrap: wrap;
     text-align: left;
     color: white !important;
@@ -175,4 +178,12 @@ body {
 
   .text-ogs{
     color: rgba(82, 113, 255, 1);
+  }
+
+  .CenterPage{
+    text-align: center;
+  }
+
+  .analyticsButton{
+    float: right;
   }

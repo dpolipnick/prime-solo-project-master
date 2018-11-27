@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
+// import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
 const Nav = (props) => (
@@ -10,8 +10,8 @@ const Nav = (props) => (
       <Link to="/">
         <img alt="" className="nav-title" src={require('./logo.png')}/>
       </Link>
-      <div className="nav-right">
-        <Link className="nav-link" to="/profile">
+      <div>
+        <Link className="Mynav-link" to="/profile">
           {/* Show this link if they are logged in or not,
           but call this link 'profile' if they are logged in,
           and call this link 'Login / Register' if they are not */}
@@ -20,26 +20,26 @@ const Nav = (props) => (
         {/* Show the user's pages if they are logged in: */}
         {props.user.id && (
           <>
-            <Link className="nav-link" to="/dashboard">
+            <Link className="Mynav-link" to="/dashboard">
               Dashboard
             </Link>
-            <Link className="nav-link" to="/newhabit">
+            <Link className="Mynav-link" to="/newhabit">
               Create New Habit
             </Link>
-            <Link className="nav-link" to="/habits">
+            <Link className="Mynav-link" to="/habits">
               Your Habits
             </Link>
-            <Link className="nav-link" to="/manual-input">
+            <Link className="Mynav-link" to="/manual-input">
               Manual Input
             </Link>
-            <Link className="nav-link" to="/analytics">
+            <Link className="Mynav-link" to="/analytics">
               Analytics
             </Link>
-            <LogOutButton className="nav-link"/>
+            {/* <LogOutButton className="Mynav-link"/> */}
           </>
         )}
         {/* Always show this link since the Home page is not protected */}
-        <Link className="nav-link" to="/">
+        <Link className="Mynav-link" to="/">
           About
         </Link>
       </div>
