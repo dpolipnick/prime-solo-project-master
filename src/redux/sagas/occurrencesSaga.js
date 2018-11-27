@@ -16,6 +16,18 @@ function* fetchOccurrencesSaga(action) {
     }
 }
 
+// Saga that GETs the occurrence history from the server/DB
+function* fetchHistorySaga(action) {
+    console.log(`In fetchHistorySaga getting this habit's data:`, action.payload);
+    try {
+        const response = yield axios.get('/api/occurrences/history', {params: action.payload});
+        yield put( { type: 'SET_HISTORY', payload: response.data } );
+    }
+    catch (error) {
+        console.log('error with occurrence history DB GET request', error);
+    }
+}
+
 // Saga that performs a POST request to add an occurrence to the database
 function* addOccurrenceSaga(action) {
     console.log('Adding occurrence to the database:', action.payload);
@@ -45,6 +57,7 @@ function* occurrencesSaga() {
   yield takeEvery('FETCH_OCCURRENCES', fetchOccurrencesSaga);
   yield takeEvery('ADD_OCCURRENCE', addOccurrenceSaga);
   yield takeEvery('DELETE_OCCURRENCE', deleteOccurrenceSaga);
+  yield takeEvery('FETCH_HISTORY', fetchHistorySaga);
 }
 
 export default occurrencesSaga;

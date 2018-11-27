@@ -7,8 +7,6 @@ import Graph from './Graph';
 
 const graph = {
   habit_id: 0,
-  startDate: '',
-  endDate: '',
 }
 
 class Analytics extends Component {
@@ -23,17 +21,17 @@ class Analytics extends Component {
     });
   }
 
-  fetchOccurrences = event => {
+  fetchHistory = event => {
     // this will prevent the page from refreshing
     event.preventDefault();
-    console.log('fetchOccurrences button clicked.');
+    console.log('fetchHistory button clicked.');
     // this will prevent the GET request until the user has filled the entire form
-    if (this.state.habit_id === 0 || this.state.startDate === '' || this.state.endDate === '') {
-        swal("WARNING!", "You need to complete each field in the form to see the data.", "warning");
+    if (this.state.habit_id === 0) {
+        swal("WARNING!", "You need to choose a habit to see the data.", "warning");
     }
     else{
     // this will send a dispatch to redux to get the occurrences from our DB
-    this.props.dispatch({type: 'FETCH_OCCURRENCES', payload: this.state});
+    this.props.dispatch({type: 'FETCH_HISTORY', payload: this.state});
     }
   }
 
@@ -52,9 +50,10 @@ class Analytics extends Component {
     return (
           <div>
               
-              <h3>View your progress!</h3>
+              <h1>View your progress!</h1>
 
-              <button onClick={()=> window.open("/search", "_self")}>Custom Search</button>
+              <button onClick={()=> window.open("/#/customsearch", "_self")}>Custom Search</button>
+              <br/>
 
                 <form>
 
@@ -74,24 +73,12 @@ class Analytics extends Component {
 
                 <br/>
 
-                <label className="newHabitForm">Select Start Date:</label>
-                <input type='date' id="startDate" placeholder="date" value={this.state.startDate} name="startDate" onChange={this.handleChange} />
-                
-                <br/>
-                <label className="newHabitForm">through</label>
-                <br/>
-
-                <label className="newHabitForm">Select End Date:</label>
-                <input type='date' id="endDate" placeholder="date" value={this.state.endDate} name="endDate" onChange={this.handleChange} />
-                
-                <br/>
-                
-                <button onClick={this.fetchOccurrences}>Show history.</button>
+                <button onClick={this.fetchHistory}>Show this habit's history.</button>
               </form>
 
             <br/>
 
-            {/* <Graph /> */}
+            <Graph />
 
           </div>
     );

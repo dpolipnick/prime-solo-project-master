@@ -84,7 +84,7 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/search"
+              path="/customsearch"
               component={CustomSearch}
             />
             <ProtectedRoute

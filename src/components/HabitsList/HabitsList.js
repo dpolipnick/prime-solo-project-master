@@ -18,7 +18,8 @@ class HabitsList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="CenterPage">
+            <h3>Your Habits</h3>
                 {this.props.reduxState.habitsReducer.map((habit) => {
                     return (
                         <section className="habit" key={habit.id}>

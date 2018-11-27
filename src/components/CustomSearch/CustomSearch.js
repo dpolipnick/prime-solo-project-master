@@ -52,7 +52,9 @@ class CustomSearch extends Component {
     return (
           <div>
               
-              <h3>View your progress!</h3>
+              <h3>Customize your search</h3>
+
+              <button onClick={()=> window.open("/#/analytics", "_self")}>Back to Analytics</button>
 
                 <form>
 

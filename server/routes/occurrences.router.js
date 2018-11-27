@@ -14,17 +14,38 @@ router.get('/', (req, res) => {
         analytics.startDate,
         analytics.endDate,
         analytics.habit_id,
-      ];
-      console.log('On server about to do occurrence GET queryText:', queryText, 'queryValues:', queryValues);
-      pool.query(queryText, queryValues)
-      .then((result) => { res.send(result.rows);
-      console.log('GET request for occurrences was successful! Your results:', result.rows);
-      })
-      .catch((error) => {
-        console.log('Error completing GET occurrences query:', error);
-        res.sendStatus(500);
-      });
-  });
+    ];
+    console.log('On server about to do occurrence GET queryText:', queryText, 'queryValues:', queryValues);
+    pool.query(queryText, queryValues)
+    .then((result) => { res.send(result.rows);
+    console.log('GET request for occurrences was successful! Your results:', result.rows);
+    })
+    .catch((error) => {
+      console.log('Error completing GET occurrences query:', error);
+      res.sendStatus(500);
+    });
+});
+
+ // This will retrieve the occurrence HISTORY from the DB
+router.get('/history', (req, res) => {
+  const analytics = req.query;
+  console.log('History GET request req.query:', analytics);
+  const queryText = `SELECT "habit_occurrences".*, "habits"."habit" FROM "habit_occurrences"
+  JOIN "habits" ON "habit_occurrences"."habit_id" = "habits"."id"
+  WHERE habit_id = $1;`;
+  const queryValues = [
+      analytics.habit_id,
+    ];
+    console.log('On server about to do occurrence GET queryText:', queryText, 'queryValues:', queryValues);
+    pool.query(queryText, queryValues)
+    .then((result) => { res.send(result.rows);
+    console.log('GET request for occurrence history was successful! Your results:', result.rows);
+    })
+    .catch((error) => {
+      console.log(`Error completing GET occurrence's history query:`, error);
+      res.sendStatus(500);
+    });
+});
 
 // This will POST a new occurrence on our DB and respond to client
 router.post('/', (req, res) => {

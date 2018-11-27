@@ -1,3 +1,6 @@
-footer {
+.Myfooter {
     margin-top: 80px;
+    text-align: center;
+    display: inline-block;
+    flex-wrap: wrap;
 }
