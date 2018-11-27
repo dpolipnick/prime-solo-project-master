@@ -3,36 +3,48 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
 
+const emptyObject = {
+  today: [],
+  week: [],
+  month: [],
+  notToday: []
+}
+
 class Graph extends Component {
 
-  state = {
-    today: [],
-    week: [],
-    month: [],
-    notToday: []
-  }
+  state = emptyObject;
 
   // occurrences = this.props.reduxState.historyReducer;
   // now = Date.now();
 
 
-  history = (timePeriod) => {
+  history = () => {
+    this.setState(emptyObject);
     let now = Date.now();
     this.props.reduxState.historyReducer.map((occurrence) => {
       // if the occurrence was within the last 24 hours, add to todayArray
       if (Date.parse(occurrence.date) > now-86400000) {
-        this.state.today.push(occurrence);
+        this.setState({
+          today: [...this.state.today, occurrence]
+        });
       }
       // week
       if (Date.parse(occurrence.date) > now-604800000) {
-        this.state.week.push(occurrence);
+        this.setState({
+          week: [...this.state.week, occurrence]
+        });
       }
       // month
       if (Date.parse(occurrence.date) > now-2592000000) {
-        this.state.month.push(occurrence);
+        this.setState({
+          month: [...this.state.month, occurrence]
+      });
       }
+      // other
       else {
-        this.state.notToday.push(occurrence);
+        this.setState({
+          notToday: [...this.state.notToday, occurrence]
+        });
       }
     })
   }
@@ -105,11 +117,13 @@ class Graph extends Component {
             <h2>Your Data:</h2>
             <button onClick={this.history}>Show History</button>
 
-              {this.occurrences.map((occurrence) => {
+              {/* {this.occurrences.map((occurrence) => {
                 return (
                 <p key={occurrence.id} value={occurrence.id}>Habit:{occurrence.habit} Date:{occurrence.date} Time:{occurrence.time}</p>
                 );
-                })}
+                })} */}
+            
+            <p>{JSON.stringify(this.state)}</p>
 
             <h3>Today</h3>
             <p>Total: {this.state.today.length}</p>
