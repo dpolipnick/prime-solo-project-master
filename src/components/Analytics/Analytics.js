@@ -80,13 +80,13 @@ class Analytics extends Component {
 
                 <br/>
 
-                <button onClick={this.fetchHistory}>Show this habit's history.</button>
+                {/* <button onClick={this.fetchHistory}>Show this habit's history.</button> */}
               </form>
 
             <br/>
 
             {/* {this.loadGraph} */}
-            <Graph />
+            <Graph historyToFetch={this.state}/>
 
           </div>
     );

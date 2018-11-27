@@ -2,56 +2,97 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
+import swal from 'sweetalert';
 
 const emptyObject = {
-  today: [],
-  week: [],
-  month: [],
-  notToday: []
+  todayArray: [],
+  weekArray: [],
+  monthArray: [],
+  allTimeArray: []
 }
 
 class Graph extends Component {
 
   state = emptyObject;
 
+  fetchHistory = event => {
+    // this will prevent the page from refreshing
+    event.preventDefault();
+    console.log('fetchHistory button clicked.');
+    // this will prevent the GET request until the user has filled the entire form
+    if (this.state.habit_id === 0) {
+        swal("WARNING!", "You need to choose a habit to see the data.", "warning");
+    }
+    else{
+    // this will send a dispatch to redux to get the occurrences from our DB
+    this.props.dispatch({type: 'FETCH_HISTORY', payload: this.props.historyToFetch});
+    // this.sortHistory();
+    }
+  }
+
   // occurrences = this.props.reduxState.historyReducer;
   // now = Date.now();
 
+  // sortHistory = () => {
+  //   this.setState(emptyObject);
+  //   let now = Date.now();
+  //   let today = this.props.reduxState.historyReducer.filter(occurrence => Date.parse(occurrence.date) > now-86400000);
+  //   this.setState({
+  //     todayArray: today,
+  //   });
+  //   let week = this.props.reduxState.historyReducer.filter(occurrence => Date.parse(occurrence.date) > now-604800000);
+  //   this.setState({
+  //     weekArray: week,
+  //   });
+  //   let month = this.props.reduxState.historyReducer.filter(occurrence => Date.parse(occurrence.date) > now-2592000000);
+  //   this.setState({
+  //     monthArray: month,
+  //   });
+  //   let allTime = this.props.reduxState.historyReducer.filter(occurrence => Date.parse(occurrence.date) < now);
+  //   this.setState({
+  //     allTimeArray: allTime,
+  //   });
+  //   console.log('newToday:', today);
+  //   console.log('this.state.todayArray:', this.state.todayArray);
+  //   console.log('newWeek:', week);
+  //   console.log('newMonth:', month);
+  //   console.log('newallTime:', allTime);
+  // }
 
-  history = () => {
-    this.setState(emptyObject);
-    let now = Date.now();
-    this.props.reduxState.historyReducer.map((occurrence) => {
-      // if the occurrence was within the last 24 hours, add to todayArray
-      if (Date.parse(occurrence.date) > now-86400000) {
-        this.setState({
-          today: [...this.state.today, occurrence]
-        });
-      }
-      // week
-      if (Date.parse(occurrence.date) > now-604800000) {
-        this.setState({
-          week: [...this.state.week, occurrence]
-        });
-      }
-      // month
-      if (Date.parse(occurrence.date) > now-2592000000) {
-        this.setState({
-          month: [...this.state.month, occurrence]
-      });
-      }
-      // other
-      else {
-        this.setState({
-          notToday: [...this.state.notToday, occurrence]
-        });
-      }
-    })
-  }
+  // history = () => {
+  //   this.setState(emptyObject);
+  //   let now = Date.now();
+  //   this.props.reduxState.historyReducer.map((occurrence) => {
+  //     // if the occurrence was within the last 24 hours, add to todayArray
+  //     if (Date.parse(occurrence.date) > now-86400000) {
+  //       this.setState({
+  //         today: [...this.state.today, occurrence]
+  //       });
+  //     }
+  //     // week
+  //     if (Date.parse(occurrence.date) > now-604800000) {
+  //       this.setState({
+  //         week: [...this.state.week, occurrence]
+  //       });
+  //     }
+  //     // month
+  //     if (Date.parse(occurrence.date) > now-2592000000) {
+  //       this.setState({
+  //         month: [...this.state.month, occurrence]
+  //     });
+  //     }
+  //     // other
+  //     else {
+  //       this.setState({
+  //         notToday: [...this.state.notToday, occurrence]
+  //       });
+  //     }
+  //   })
+  // }
 
-  componentDidMount = () => {
-    this.history();
-  }
+  // componentDidMount = () => {
+    // this.sortHistory();
+  // }
 
   // searchHistory = (string) => {
   //   console.log(`Searching through ${string} searchHistory.`)
@@ -78,7 +119,7 @@ class Graph extends Component {
   //   }
   // }
 
-  // today = {
+  // todayChart = {
   //   labels: January, Feruary, March, April, May, June, July, August, September, October, November, December,
   //   datasets: [
   //     {
@@ -105,17 +146,26 @@ class Graph extends Component {
   //   ]
   // };
 
-  sample = 3;
-
 
   render() {
 
+  
+      let now = Date.now();
+      let today = this.props.reduxState.historyReducer.filter(occurrence => Date.parse(occurrence.date) > now-86400000);
+
+      let week = this.props.reduxState.historyReducer.filter(occurrence => Date.parse(occurrence.date) > now-604800000);
+
+      let month = this.props.reduxState.historyReducer.filter(occurrence => Date.parse(occurrence.date) > now-2592000000);
+
+      let allTime = this.props.reduxState.historyReducer.filter(occurrence => Date.parse(occurrence.date) < now);
+    
     return (
 
         <div>
-              
+            
+            <button onClick={this.fetchHistory}>Show History</button>
+            <br/>
             <h2>Your Data:</h2>
-            <button onClick={this.history}>Show History</button>
 
               {/* {this.occurrences.map((occurrence) => {
                 return (
@@ -123,35 +173,28 @@ class Graph extends Component {
                 );
                 })} */}
             
-            <p>{JSON.stringify(this.state)}</p>
+            {/* <p>{JSON.stringify(this.state)}</p> */}
 
+            <section  className="habit">
             <h3>Today</h3>
-            <p>Total: {this.state.today.length}</p>
+            <p>Total: {today.length}</p>
+            {/* <Line data={this.todayChart} /> */}
+            </section>
 
+            <section  className="habit">
             <h3>This Week</h3>
-            <p>Total: {this.state.week.length}</p>
+            <p>Total: {week.length}</p>
+            </section>
 
+            <section  className="habit">
             <h3>This Month</h3>
-            <p>Total: {this.state.month.length}</p>
+            <p>Total: {month.length}</p>
+            </section>
 
+            <section  className="habit">
             <h3>All Time</h3>
             <p>Total: {this.props.reduxState.historyReducer.length}</p>
-
-            <h3>Not Today</h3>
-            <p>Total: {this.state.notToday}</p>
-
-            {/* <Line data={this.today} /> */}
-
-            <h3>This Week</h3>
-            <p>Monday: </p>
-            <p>Tuesday: </p>
-            <p>Wednesday: </p>
-            <p>Thursday: </p>
-            <p>Friday: </p>
-            <p>Saturday: </p>
-            <p>Sunday: </p>
-
-            <h3>This Month</h3>
+            </section>
 
         </div>
     );
