@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 // Styles
-import './Footer.css'
+import './Footer.css';
 
 class Footer extends Component {
   render() {
