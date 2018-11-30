@@ -86,12 +86,38 @@ class Record extends Component {
 
   // Get all notes from previous sessions and display them.
 
-  renderNotes(notes);
+  // renderNotes(notes);
 
 
   /*-----------------------------
         Helper Functions 
   ------------------------------*/
+
+  renderNotes = () => {
+    if (this.state.notes.length > 0) {
+      return (
+        <ul id="notes">
+          {this.state.notes.map((note) => {
+            return (
+              <li class="note">
+                <p class="header">
+                  <span class="date">${note.date}</span>
+                  <a href="#" class="listen-note" title="Listen to Note">Listen to Note</a>
+                  <a href="#" class="delete-note" title="Delete">Delete</a>
+                </p>
+                <p class="content">${note.content}</p>
+              </li>  
+            );
+          })}
+        </ul>
+      )
+    } // end if state has notes statement
+    else {
+      return (
+        <p class="content">You don\'t have any notes yet.</p>
+      )
+    }
+  } // end renderNotes function
 
   saveNote = (dateTime, content) => {
     localStorage.setItem('note-' + dateTime, content);
@@ -189,31 +215,8 @@ class Record extends Component {
           <p id="recording-instructions">{this.state.instructions}</p>
           
           <h3>My Notes</h3>
-          <ul id="notes">
-              <li>
-                {this.state.notes.map((note) => {
-                  return (
-                    <li class="note">
-                      <p class="header">
-                        <span class="date">${note.date}</span>
-                        <a href="#" class="listen-note" title="Listen to Note">Listen to Note</a>
-                        <a href="#" class="delete-note" title="Delete">Delete</a>
-                      </p>
-                      <p class="content">${note.content}</p>
-                    </li>  
-                  );
-                })}
-                  });
-                }
-                else {
-                  html = '<li><p class="content">You don\'t have any notes yet.</p></li>';
-                }
-                notesList.html(html);
-              }
 
-                  <p class="no-notes">You don't have any notes.</p>
-              </li>
-          </ul>
+          {renderNotes}
 
         </div>
 

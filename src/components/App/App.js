@@ -20,6 +20,7 @@ import Analytics from '../Analytics/Analytics';
 import EditHabit from '../EditHabit/EditHabit';
 import ManualInput from '../ManualInput/ManualInput';
 import CustomSearch from '../CustomSearch/CustomSearch';
+import Record from '../Record/Record';
 // Styles
 //import './App.css';
 import './bootstrap.css';
@@ -96,6 +97,11 @@ class App extends Component {
               exact
               path="/manual-input"
               component={ManualInput}
+            />
+            <ProtectedRoute
+              exact
+              path="/record"
+              component={Record}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
