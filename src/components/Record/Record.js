@@ -57,17 +57,23 @@ class Record extends Component {
         }
       };
 
-      recognition.onstart = function() { 
-        instructions.text('Voice recognition activated. Try speaking into the microphone.');
+      recognition.onstart = function() {
+        this.setState({
+          instructions: 'Voice recognition activated. Try speaking into the microphone.',
+        })
       }
 
       recognition.onspeechend = function() {
-        instructions.text('You were quiet for a while so voice recognition turned itself off.');
+        this.setState=({
+          instructions: 'You were quiet for a while so voice recognition turned itself off.',
+        })
       }
 
       recognition.onerror = function(event) {
         if(event.error == 'no-speech') {
-          instructions.text('No speech was detected. Try again.');  
+          this.setState({
+            instructions: 'No speech was detected. Try again.', 
+          })
         };
       }
       getAllNotes();
