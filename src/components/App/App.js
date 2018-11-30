@@ -20,7 +20,7 @@ import Analytics from '../Analytics/Analytics';
 import EditHabit from '../EditHabit/EditHabit';
 import ManualInput from '../ManualInput/ManualInput';
 import CustomSearch from '../CustomSearch/CustomSearch';
-import Record from '../Record/Record';
+import Record from '../Record/Record.1';
 // Styles
 //import './App.css';
 import './bootstrap.css';
