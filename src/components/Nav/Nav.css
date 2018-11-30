@@ -6,14 +6,14 @@
 
 .nav {
   overflow: hidden;
-  background-color: rgba(82, 113, 255, 1);
+  background-image: linear-gradient(-90deg, #52E8FF, #FF52EE);
   margin-bottom: 1em;
 }
 
 .Mynav-link {
   /* float: center; */
   color: white;
-  background-color: rgba(82, 113, 255, 1);
+  /* background-color: rgba(82, 113, 255, 1); */
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
