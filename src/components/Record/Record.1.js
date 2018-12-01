@@ -75,7 +75,9 @@ class Record extends Component {
       this.fetchHabits();
     }
     catch(e) {
-      console.error(e);
+      // if the user can't use the API
+      console.error(`Error using this page's Speech Recognition API. 
+      Try opening it in Google Chrome. Error:`, e);
     }
   }
 
@@ -121,6 +123,10 @@ class Record extends Component {
     let two = contentArray.filter(word => word === '2');
 
     let three = contentArray.filter(word => word === '3');
+
+    let red = 'red';
+    let blue = 'blue';
+    let rEd = 'rEd';
     
     return (
       <div>
@@ -145,7 +151,9 @@ class Record extends Component {
 
         {this.props.reduxState.habitsReducer.map((habit) => {
           let contentArray = this.state.noteContent.split(" ");
-          let count = contentArray.filter(word => word === habit.habit);          
+          // word.localeCompare(habit.habit)
+          let count = contentArray.filter(word => word.toUpperCase() === habit.habit.toUpperCase());  
+          // let count = contentArray.filter(word => word.localeCompare(habit.habit) === 1);                  
           return (
             <section key={habit.id} className="habit">
             <h3>{habit.habit}</h3>
@@ -153,6 +161,10 @@ class Record extends Component {
             </section>
           );
         })}
+
+        <p>red.localeCompare(red): {red.localeCompare(red)}</p>
+        <p>red.localeCompare(blue): {red.localeCompare(blue)}</p>
+        <p>rEd.localeCompare(red): {rEd.localeCompare(red)}</p>
 
 
         <section  className="habit">
