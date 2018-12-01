@@ -44,7 +44,7 @@ class Record extends Component {
 
         if(!mobileRepeatBug) {
           component.setState({
-            noteContent: component.noteContent + transcript
+            noteContent: component.state.noteContent + transcript
           })
         }
       }
@@ -71,11 +71,17 @@ class Record extends Component {
       this.setState({
         recognition: recognition
       })   
-      this.getInstructions();  
+      this.getInstructions();
+      this.fetchHabits();
     }
     catch(e) {
       console.error(e);
     }
+  }
+
+  fetchHabits = () => {
+    // Dispatch action to fetch the Habits from the server
+    this.props.dispatch( { type: 'FETCH_HABITS' } );
   }
 
   getInstructions = () => {
@@ -112,8 +118,6 @@ class Record extends Component {
 
     let contentArray = this.state.noteContent.split(" ");
 
-    let one = contentArray.filter(word => word === '1');
-
     let two = contentArray.filter(word => word === '2');
 
     let three = contentArray.filter(word => word === '3');
@@ -139,10 +143,17 @@ class Record extends Component {
 
         <h2>Your Data:</h2>
 
-        <section  className="habit">
-        <h3>one</h3>
-        <p>Total: {one.length}</p>
-        </section>
+        {this.props.reduxState.habitsReducer.map((habit) => {
+          let contentArray = this.state.noteContent.split(" ");
+          let count = contentArray.filter(word => word === habit.habit);          
+          return (
+            <section key={habit.id} className="habit">
+            <h3>{habit.habit}</h3>
+            <p>Total: {count.length}</p>
+            </section>
+          );
+        })}
+
 
         <section  className="habit">
         <h3>This two</h3>
