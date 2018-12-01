@@ -110,17 +110,21 @@ class Record extends Component {
 
   render() {
 
+    let contentArray = this.state.noteContent.split(" ");
+
+    let one = contentArray.filter(word => word === '1');
+
+    let two = contentArray.filter(word => word === '2');
+
+    let three = contentArray.filter(word => word === '3');
     
     return (
       <div>
-          
-        <h1>Record yourself and view your habit counts!</h1>
-        <br/>
 
         <div className="app">
 
-          <h3>Your Transcript:</h3>
-          <p>{this.state.noteContent}</p>
+          <h2>Your Transcript:</h2>
+          <p className="transcript">{this.state.noteContent}</p>
           {/* <div className="input-single">
               <textarea value={this.state.noteContent} id="note-textarea" placeholder="Create a new note by typing or using voice recognition." rows="6"></textarea>
           </div> */}
@@ -129,9 +133,27 @@ class Record extends Component {
           <button onClick={this.pauseRecording} id="pause-record-btn" title="Pause Recording">Pause Recognition</button>
           <button onClick={this.saveNote} id="save-note-btn" title="Save Note">Save Note</button>   
           
-          <p className="testimonial">{this.state.instructions}</p>
+          <p>{this.state.instructions}</p>
           
         </div>
+
+        <h2>Your Data:</h2>
+
+        <section  className="habit">
+        <h3>one</h3>
+        <p>Total: {one.length}</p>
+        </section>
+
+        <section  className="habit">
+        <h3>This two</h3>
+        <p>Total: {two.length}</p>
+        </section>
+
+        <section  className="habit">
+        <h3>This three</h3>
+        <p>Total: {three.length}</p>
+        </section>
+
 
 
       </div>

@@ -187,3 +187,18 @@ body {
   .analyticsButton{
     float: right;
   }
+
+  .transcript{
+    background-color: white;
+    height: 350px;
+    width: 400px;
+    border: 7.5px solid black;
+    display: inline-block;
+    /* margin: 10px; */
+    flex-wrap: wrap;
+    color: black !important;
+    font-size: 25px;
+    text-align: center;
+    align-content: center;
+    padding: 20px;
+  }
