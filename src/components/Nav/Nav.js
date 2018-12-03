@@ -7,9 +7,6 @@ import './Nav.css';
 const Nav = (props) => (
   <div>
     <div className="nav">
-      <Link to="/">
-        <img alt="" className="nav-title" src={require('./logo.png')}/>
-      </Link>
       <div>
         <Link className="Mynav-link" to="/profile">
           {/* Show this link if they are logged in or not,
@@ -20,6 +17,9 @@ const Nav = (props) => (
         {/* Show the user's pages if they are logged in: */}
         {props.user.id && (
           <>
+            <Link to="/">
+              <img alt="" className="nav-title" src={require('./logo.png')}/>
+            </Link>
             <Link className="Mynav-link" to="/dashboard">
               Dashboard
             </Link>
