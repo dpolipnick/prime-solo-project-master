@@ -1,6 +1,6 @@
 
 
-***See the final presentation video and live demo: https://youtu.be/HHVFd79JYWM ***
+**See the final presentation video and live demo: https://youtu.be/HHVFd79JYWM **
 
 # Habit Breaker
 
@@ -61,7 +61,7 @@ Features I would like to add in the future.
 ## Deployment
 
 You can deploy this application as long as you also have the database side deployed.
-**This application's Browser Voice Transcription API only works with the Google Chrome Browser
+**This application's Browser Voice Transcription API only works with the Google Chrome Browser**
 
 ## Authors
 
